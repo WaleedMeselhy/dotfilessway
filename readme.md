@@ -9,20 +9,29 @@ yay -S base-devel           \
     howdy                   \
     linux-enable-ir-emitter \
     docker docker-compose   \
-
-
-
-
+    1password 1password-cli \
+    slack-desktop git-cola  \
+    wlr-randr zoxide        \
+    p4v exa autojump        \
+    tmux meld               \
+    tlp tlp-rdw             \
+    ttf-fira-code           \
+    adobe-source-code-pro-fonts \
+    ttf-sourcecodepro-nerd  \
+    ttf-meslo-nerd          \
+    ttf-ms-fonts            \
+    x86_energy_perf_policy intel-ucode intel-compute-runtime vulkan-intel       \
 ```
 systemctl enable fprintd.service
 systemctl start fprintd.service
 sudo fprintd-enroll waleed
 ```
 
-
+* configure face lock
+```
 sudo linux-enable-ir-emitter configure
-EDITOR=editor sudo howdy config # edit device_path to what we get from "v4l2-ctl --list-devices"
-
+replace device_path = none with  device_path = /dev/video2  in EDITOR=editor sudo howdy config
+```
 
 * edit below files to add 
 ```
@@ -38,9 +47,66 @@ sudo nano /etc/pam.d/polkit-1
 sudo nano /etc/pam.d/sudo
 ```
 
+
+* configure nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+nvm use 18
+nvm install 18
+npm install --global yarn 
+```
+
 * enable docker
 ```
-sudo systemctl start docker.service
 sudo systemctl enable docker.service
+sudo systemctl start docker.service
 sudo usermod -aG docker ${USER}
+```
+
+* configure zsh plugins
+```
+sudo chown waleed:waleed -R /usr/share/oh-my-zsh/custom
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+git clone git@github.com:jscutlery/nx-completion.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/nx-completion
+git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+```
+
+* configure tmux
+```
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf
+cp .tmux/.tmux.conf.local .
+```
+
+* configure zsh autocomplete
+```
+rm -f /home/waleed/.config/zsh/.zcompdump*; compinit
+```
+
+* configure tlp
+```
+sudo systemctl enable tlp.service
+sudo systemctl mask systemd-rfkill.service
+sudo systemctl mask systemd-rfkill.socket
+sudo systemctl start tlp.service
+```
+
+* configure font
+```
+fc-cache -v
+```
+
+
+# configure fstrim
+```
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+```
+
+* fix simplenote
+```
+# fix simplenote
+Exec=/opt/Simplenote/simplenote %U  to Exec=/opt/Simplenote/simplenote --no-sandbox %U in /usr/share/applications/simplenote.desktop
 ```
