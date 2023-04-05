@@ -20,7 +20,17 @@ yay -S base-devel           \
     ttf-sourcecodepro-nerd  \
     ttf-meslo-nerd          \
     ttf-ms-fonts            \
-    x86_energy_perf_policy intel-ucode intel-compute-runtime vulkan-intel       \
+    x86_energy_perf_policy  \
+    intel-ucode             \
+    intel-compute-runtime   \
+    vulkan-intel            \
+    dbeaver                 \
+    postman-bin             \
+    telegram-desktop        \
+    neovim                  \
+    vlc                     \
+    vdhcoapp                \
+    
 ```
 systemctl enable fprintd.service
 systemctl start fprintd.service
@@ -69,6 +79,7 @@ sudo chown waleed:waleed -R /usr/share/oh-my-zsh/custom
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
 git clone git@github.com:jscutlery/nx-completion.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/nx-completion
 git clone https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-tab
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
@@ -99,7 +110,7 @@ fc-cache -v
 ```
 
 
-# configure fstrim
+* configure fstrim
 ```
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
@@ -109,4 +120,10 @@ sudo systemctl start fstrim.timer
 ```
 # fix simplenote
 Exec=/opt/Simplenote/simplenote %U  to Exec=/opt/Simplenote/simplenote --no-sandbox %U in /usr/share/applications/simplenote.desktop
+```
+
+* enable slack share
+```
+sudo nano /usr/share/applications/slack.desktop
+Exec=/usr/bin/slack -s --enable-features=WebRTCPipeWireCapturer %U
 ```
