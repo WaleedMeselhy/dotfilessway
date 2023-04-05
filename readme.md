@@ -30,7 +30,10 @@ yay -S base-devel           \
     neovim                  \
     vlc                     \
     vdhcoapp                \
-    
+    notion-app-enhanced     \
+    gnome-disk-utility      \
+    graphviz                \
+    zoom                    \
 ```
 systemctl enable fprintd.service
 systemctl start fprintd.service
