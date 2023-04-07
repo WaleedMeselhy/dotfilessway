@@ -1,0 +1,14 @@
+{
+    "include": [
+        "/usr/share/sway/templates/waybar/config.jsonc"
+    ],
+    "network": {
+                "format-wifi": " ⇵ {bandwidthDownBits}/{bandwidthUpBits}",
+                "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+                "format-linked": "{ifname} (No IP) ",
+                "format-disconnected": "Disconnected ⚠",
+                "format-alt": "{ifname}: {ipaddr}/{cidr}",
+                "interval": 5,
+                "on-click": "swaymsg exec \\$term_float nmtui"
+    }
+}
