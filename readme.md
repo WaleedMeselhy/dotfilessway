@@ -34,6 +34,12 @@ yay -S base-devel           \
     gnome-disk-utility      \
     graphviz                \
     zoom                    \
+    gtop                    \
+    obsidian    \
+    syncthing   \
+    okular \
+    samba smbclient \
+    tor-browser     \
 ```
 systemctl enable fprintd.service
 systemctl start fprintd.service
