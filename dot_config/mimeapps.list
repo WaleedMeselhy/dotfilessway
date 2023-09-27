@@ -3,6 +3,8 @@ text/plain=notepad++.desktop;
 application/json=notepad++.desktop;
 video/mp4=vlc.desktop;
 application/pdf=org.kde.okular.desktop;
+image/png=swappy.desktop;imv-dir.desktop;
+application/x-partial-download=vlc.desktop;
 
 [Default Applications]
 text/plain=notepad++.desktop
@@ -15,3 +17,4 @@ application/json=notepad++.desktop
 x-scheme-handler/postman=Postman.desktop
 video/mp4=vlc.desktop
 application/pdf=org.kde.okular.desktop
+image/png=imv-dir.desktop

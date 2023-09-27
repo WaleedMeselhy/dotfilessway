@@ -1,2 +1,6 @@
 @import "Manjaro"
 @theme "/usr/share/rofi/themes/Arc-Dark.rasi"
+configuration {
+max-history-size:0;
+disable-history:true;
+}
