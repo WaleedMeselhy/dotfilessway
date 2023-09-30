@@ -68,6 +68,8 @@ sudo nano /etc/pam.d/polkit-1
 sudo nano /etc/pam.d/sudo
 ```
 
+* configure kerying
+install seahorse and create default password kerying
 
 * configure nvm
 ```sh
