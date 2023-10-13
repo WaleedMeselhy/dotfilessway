@@ -35,6 +35,9 @@ include $HOME/.config/sway/config.d/*.conf
 exec_always .scripts/dual.sh
 # exec_always nm-applet --indicator
 
+$unbindsym Print
+$bindsym $mod+Ctrl+p mode $mode_screenshot
+
 $unbindsym $mod+f
 bindsym $mod+f exec ~/.config/sway/fullscreen.py
 #bindsym $mod+z focus child

@@ -5,6 +5,8 @@ video/mp4=vlc.desktop;
 application/pdf=org.kde.okular.desktop;
 image/png=swappy.desktop;imv-dir.desktop;
 application/x-partial-download=vlc.desktop;
+image/jpeg=imv-dir.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=notepad++.desktop;
 
 [Default Applications]
 text/plain=notepad++.desktop
@@ -18,3 +20,4 @@ x-scheme-handler/postman=Postman.desktop
 video/mp4=vlc.desktop
 application/pdf=org.kde.okular.desktop
 image/png=imv-dir.desktop
+image/jpeg=imv-dir.desktop
