@@ -7,6 +7,9 @@ image/png=swappy.desktop;imv-dir.desktop;
 application/x-partial-download=vlc.desktop;
 image/jpeg=imv-dir.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=notepad++.desktop;
+video/mpeg=vlc.desktop;
+video/x-ms-wmv=vlc.desktop;
+video/vnd.avi=vlc.desktop;
 
 [Default Applications]
 text/plain=notepad++.desktop
@@ -21,3 +24,8 @@ video/mp4=vlc.desktop
 application/pdf=org.kde.okular.desktop
 image/png=imv-dir.desktop
 image/jpeg=imv-dir.desktop
+x-scheme-handler/eclipse+command=_usr_lib_dbeaver_.desktop
+video/mpeg=vlc.desktop
+video/x-ms-wmv=vlc.desktop
+video/vnd.avi=vlc.desktop
+x-scheme-handler/webcal=google-chrome.desktop
