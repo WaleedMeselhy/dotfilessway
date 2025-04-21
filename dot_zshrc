@@ -19,3 +19,8 @@ eval "$(pyenv init -)"
 source /usr/share/nvm/init-nvm.sh
 export STARSHIP_CONFIG=~/.config/starship.toml
 eval "$(starship init zsh)"
+
+
+# Use fortune and cowsay with the random figure
+random_figure=$(ls /usr/share/cowsay/cows/ | shuf -n 1)
+fortune | cowsay -f "$random_figure"

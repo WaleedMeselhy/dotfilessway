@@ -46,21 +46,21 @@ bindsym $mod+f exec ~/.config/sway/fullscreen.py
 
 
 workspace 1 output DP-2
-workspace 2 output DP-4
+workspace 2 output DP-5
 workspace 3 output DP-2
-workspace 4 output DP-4
+workspace 4 output DP-5
 workspace 5 output DP-2
-workspace 6 output DP-4
+workspace 6 output DP-5
 workspace 7 output DP-2
-workspace 8 output DP-4
+workspace 8 output DP-5
 workspace 9 output DP-2
-workspace 10 output DP-4
+workspace 10 output DP-5
 
 #assign [app_id="foot"] workspace number 2
 #for_window [app_id="foot"] focus
 
 $unbindsym $mod+d
-set $menu rofi -show combi -combi-modi "combi,desk,github,drun" -modes "drun,run,github:~/.config/rofi/github.sh,desk:~/.config/rofi/desk.sh" -terminal $term -ssh-command "{terminal} {ssh-client} {host} [-p {port}]" -run-shell-command "{terminal} {cmd}" -show-icons -font "$gui-font" -lines 10 -width 35
+set $menu rofi -show combi -combi-modi "combi,desk,github,drun,kill-apps" -modes "drun,run,github:~/.config/rofi/github.sh,kill-apps:~/.config/rofi/kill.sh,desk:~/.config/rofi/desk.sh" -terminal $term -ssh-command "{terminal} {ssh-client} {host} [-p {port}]" -run-shell-command "{terminal} {cmd}" -show-icons -font "$gui-font" -lines 10 -width 35
 $bindsym $mod+d exec $menu
 
 # $unbindsym $mod+w
