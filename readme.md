@@ -15,10 +15,12 @@ fortune-mod cowsay gtop \
 visual-studio-code-bin qownnotes \
 google-chrome nvim tmux meld geany\
 autojump zoxide fzf eza yazi \
-kubectl
+kubectl aws-cli
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+yay -S electron25-bin claude-desktop chatgpt-desktop-bin
 ```
 
 ## config zsh plugins
