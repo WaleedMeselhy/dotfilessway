@@ -1,3 +1,8 @@
+
+# Use fortune and cowsay with the random figure
+random_figure=$(ls /usr/share/cowsay/cows/ | shuf -n 1)
+fortune | cowsay -f "$random_figure"
+
 # base config for oh my zsh
 source /usr/share/oh-my-zsh/zshrc
 #p10k instant prompt to make terminal open a bit snappier
@@ -28,6 +33,7 @@ export PATH="$PATH:/home/waleed/.local/bin"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git

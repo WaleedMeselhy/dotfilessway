@@ -8,15 +8,17 @@ pipx ensurepath
 
 ## Packages
 ```sh
-yay -S fortune-mod cowsay
+pipx install linak-controller 
+yay -S gnome-keyring libsecret libgnome-keyring seahorse \
+fortune-mod cowsay gtop \
 1password 1password-cli chezmoi wlr-randr  ttf-roboto-mono-nerd \
 visual-studio-code-bin qownnotes \
-google-chrome nvim tmux meld \
-autojump zoxide fzf eza yazi
-pipx install linak-controller
+google-chrome nvim tmux meld geany\
+autojump zoxide fzf eza yazi \
+kubectl
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
-pipx install linak-controller 
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
 
 ## config zsh plugins
