@@ -10,12 +10,14 @@ pipx ensurepath
 ```sh
 pipx install linak-controller 
 yay -S gnome-keyring libsecret libgnome-keyring seahorse \
+xdg-desktop-portal-wlr xdg-desktop-portal-gtk pipewire wireplumber \
 fortune-mod cowsay gtop \
 1password 1password-cli chezmoi wlr-randr  ttf-roboto-mono-nerd \
 visual-studio-code-bin qownnotes \
 google-chrome nvim tmux meld geany\
 autojump zoxide fzf eza yazi \
-kubectl aws-cli
+kubectl aws-cli \
+zoom slack-desktop
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -40,16 +42,27 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ```sh
 sh -c "$(curl -fsLS get.chezmoi.io)" -- init  https://github.com/WaleedMeselhy/dotfilessway.git
 ```
+## config keyring
+* Configure PAM for Automatic Unlock
 
+    Edit the PAM configuration to unlock the keyring on login:
+    ```sh
+    sudo nano /etc/pam.d/login
+    ```
+    Add these lines if not present:
+    ```
+    auth       optional     pam_gnome_keyring.so
+    session    optional     pam_gnome_keyring.so auto_start
+    ```
+## fix zoom sharing
+```sh
+systemctl --user restart pipewire wireplumber xdg-desktop-portal
+```
 
 ## make chezmoi repo use shh
 ```sh
 git remote set-url origin git@github.com:waleedmeselhy/dotfilessway
 ```
-
-
-
-
 
 
 
