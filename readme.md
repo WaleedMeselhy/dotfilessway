@@ -42,7 +42,10 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init  https://github.com/WaleedMeselhy/d
 ```
 
 
-
+## make chezmoi repo use shh
+```sh
+git remote set-url origin git@github.com:waleedmeselhy/dotfilessway
+```
 
 
 
