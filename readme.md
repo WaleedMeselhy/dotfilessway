@@ -8,8 +8,10 @@ pipx ensurepath
 
 ## Packages
 ```sh
-pipx install linak-controller 
-yay -S gnome-keyring libsecret libgnome-keyring seahorse \
+pipx install linak-controller
+yay -S notion-app-electron libreoffice-still \
+vlc vlc-plugin-ffmpeg samba smbclient\
+gnome-keyring libsecret libgnome-keyring seahorse \
 xdg-desktop-portal-wlr xdg-desktop-portal-gtk pipewire wireplumber \
 fortune-mod cowsay gtop \
 1password 1password-cli chezmoi wlr-randr  ttf-roboto-mono-nerd \
@@ -17,12 +19,13 @@ visual-studio-code-bin qownnotes \
 google-chrome nvim tmux meld geany\
 autojump zoxide fzf eza yazi \
 kubectl aws-cli \
-zoom slack-desktop
+zoom slack-desktop \
+docker docker-compose postman-bin ngrok postgresql redis \
+git-cola nemo dbeaver zip k9s htop \
+electron25-bin claude-desktop chatgpt-desktop-bin
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-
-yay -S electron25-bin claude-desktop chatgpt-desktop-bin
 ```
 
 ## config zsh plugins
@@ -59,25 +62,18 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init  https://github.com/WaleedMeselhy/d
 systemctl --user restart pipewire wireplumber xdg-desktop-portal
 ```
 
+## enable docker
+```sh
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
+sudo usermod -aG docker ${USER}
+```
+
+
 ## make chezmoi repo use shh
 ```sh
 git remote set-url origin git@github.com:waleedmeselhy/dotfilessway
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

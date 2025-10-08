@@ -6,5 +6,5 @@ adapter_name: hci0
 server_address: "127.0.0.1"
 server_port: 9123
 favourites:
-  sit: 683
+  sit: 690
   stand: 1074

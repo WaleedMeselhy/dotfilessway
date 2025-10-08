@@ -78,3 +78,27 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 export NVM_DIR="$HOME/.config/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Custom deduplication hook
+zshaddhistory() {
+    emulate -L zsh
+    local line="${1%%$'\n'}"
+    
+    # Skip empty lines
+    [[ -z "$line" ]] && return 1
+    
+    # Check for duplicates without temp file
+    if fc -ln 1 2>/dev/null | grep -Fxq "$line"; then
+        return 1  # Skip duplicate
+    fi
+    [[ "$line" == "./manage.py test"* ]] && fc -ln 1 2>/dev/null | grep -q '^./manage.py test' && return 1
+    [[ "$line" == "k exec"* ]] && fc -ln 1 2>/dev/null | grep -q '^k exec' && return 1
+    [[ "$line" == "git checkout ENG-"* ]] && fc -ln 1 2>/dev/null | grep -q '^git checkout ENG-' && return 1
+    [[ "$line" == "git checkout -b ENG-"* ]] && fc -ln 1 2>/dev/null | grep -q '^git checkout -b ENG-' && return 1
+    [[ "$line" == "git push -u origin"* ]] && fc -ln 1 2>/dev/null | grep -q '^git push -u origin' && return 1
+    [[ "$line" == "./utils/commands/maintenance_pod.sh --env production --keep --label"* ]] && fc -ln 1 2>/dev/null | grep -q '^./utils/commands/maintenance_pod.sh --env production --keep --label' && return 1
+    [[ "$line" == "k delete pod"* ]] && fc -ln 1 2>/dev/null | grep -q '^k delete pod' && return 1
+    [[ "$line" == "k logs"* ]] && fc -ln 1 2>/dev/null | grep -q '^k logs' && return 1
+  
+    return 0  # Add to history
+}
