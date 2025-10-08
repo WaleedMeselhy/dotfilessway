@@ -15,6 +15,12 @@ gnome-keyring libsecret libgnome-keyring seahorse \
 xdg-desktop-portal-wlr xdg-desktop-portal-gtk pipewire wireplumber \
 fortune-mod cowsay gtop \
 1password 1password-cli chezmoi wlr-randr  ttf-roboto-mono-nerd \
+ttf-fira-code           \
+intel-ucode    intel-compute-runtime \
+adobe-source-code-pro-fonts \
+ttf-sourcecodepro-nerd  \
+ttf-meslo-nerd          \
+ttf-ms-fonts      \
 visual-studio-code-bin qownnotes \
 google-chrome nvim tmux meld geany\
 autojump zoxide fzf eza yazi \
@@ -68,6 +74,12 @@ sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo usermod -aG docker ${USER}
 ```
+
+* configure font
+```sh
+fc-cache -v
+```
+
 
 
 ## make chezmoi repo use shh
