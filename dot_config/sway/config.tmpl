@@ -78,3 +78,7 @@ $bindsym $mod+d exec $menu
 
 exec --no-startup-id eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 exec --no-startup-id export SSH_AUTH_SOCK
+
+set $clipboard ~/.config/sway/clipboard.sh
+$unbindsym $mod+Shift+p
+bindsym $mod+Shift+p exec $clipboard

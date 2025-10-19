@@ -1,0 +1,88 @@
+: 1759073776:0;sudo mount -t cifs //tnas.local/public waleed-nas -o username=waleed,password=Sa123456,vers=3.0,uid=1000,gid=1000
+: 1759073792:0;sudo umount waleed-nas
+: 1759074225:0;git pull
+: 1759074228:0;git stash
+: 1759074453:0;tmux attach-session || tmux
+: 1759074820:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster-prod
+: 1759084581:0;reboot
+: 1759128147:0;yay -Syyu
+: 1759128514:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster
+: 1759129300:0;pacman -Qtdq | sudo pacman -Rns -
+: 1759129317:0;git-cola
+: 1759129497:0;git log
+: 1759129557:0;git reset --soft HEAD~1
+: 1759129572:0;git checkout staging
+: 1759130188:0;git reset --hard origin/staging
+: 1759130198:0;git stash pop
+: 1759130455:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards
+: 1759130466:0;./compose/scripts/compose.sh destroy redis postgres opensearch opensearch-dashboards
+: 1759130500:0;./manage.py load_db
+: 1759130558:0;./manage.py sync_static_data
+: 1759130583:0;./manage.py runserver
+: 1759130849:0;./compose/scripts/up_x.sh postgres_tokens postgres_tokens_sa
+: 1759130892:0;cd "/home/waleed/work/one/checkout_preact/app" && yarn dev
+: 1759130897:0;cd "/home/waleed/work/one_vault/vault_form/app" && yarn dev
+: 1759130915:0;source .venv/bin/activate
+: 1759130921:0;./manage.py runserver 8001
+: 1759130936:0;ngrok 8000
+: 1759130953:0;ngrok http 8000
+: 1759131455:0;ps aux| grep own
+: 1759133496:0;./manage.py shell_plus --quiet-load
+: 1759138083:0;git checkout FIX_
+: 1759138199:0;git merge staging
+: 1759138233:0;git push
+: 1759139336:0;./compose/scripts/compose.sh up redis postgres
+: 1759139381:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean.sql
+: 1759139454:0;./compose/scripts/compose.sh destroy-all
+: 1759160398:0;git checkout -b ENG-
+: 1759160514:0;./manage.py test -v 3 --parallel=20
+: 1759160793:0;./manage.py test -v 3 -k test_payfort_file_in_settlement_task
+: 1759214183:0;./manage.py opensearch index delete
+: 1759214210:0;./manage.py opensearch index create
+: 1759214277:0;./manage.py sync_transactions_to_opensearch
+: 1759223724:0;make switch_to_latest_prod_tag
+: 1759242170:0;./utils/commands/custom_env_pod.sh \\
+  --env production \\
+  --app django \\
+  --extra-env DD_PROFILING_ENABLED=true \\
+  --extra-env DD_TRACE_ENABLED=true \\
+  --extra-env DD_TRACE_METHODS='rest_framework.generics:GenericAPIView.get_object;rest_framework.generics:GenericAPIView.filter_queryset;rest_framework.generics:GenericAPIView.filter_queryset;rest_framework.views:APIView.initial;root.payments.views:TransactionDashboardViewSet.retrieve;rest_framework.views:APIView.dispatch;rest_framework.views:APIView.initialize_request;rest_framework.views:APIView.finalize_response;root.providers.models.models:PolymorphicModel.get_real_instance_class;root.providers.models.models:Method.all_config;root.providers.models.models:Method.config;root.providers.models.models:ServiceProvider.config;root.providers.models.models:Service.config;root.providers.models.models:Service.get_real_instance;root.core.mixins:CacheMixin.get_real_instance;root.payment_providers.utils:start_apple_pay_payment_session;root.payment_providers.self_serve_apple_pay.apple_pay:StandAloneSelfServeApplePay.get_apple_pay_merchant_id;root.payment_providers.self_serve.apple_pay:SelfServeApplePay.get_apple_pay_merchant_id;root.payment_providers.checkoutdotcom.apple_pay:CheckoutDotComApplePay.get_apple_pay_merchant_id;root.payment_providers.network_international.apple_pay:NetworkInternationalApplePay.get_apple_pay_merchant_id;root.payment_providers.self_serve_apple_pay.apple_pay:StandAloneSelfServeApplePay.get_apple_pay_key_file;root.payment_providers.self_serve.apple_pay:SelfServeApplePay.get_apple_pay_key_file;root.payment_providers.checkoutdotcom.apple_pay:CheckoutDotComApplePay.get_apple_pay_key_file;root.payment_providers.network_international.apple_pay:NetworkInternationalApplePay.get_apple_pay_key_file;root.payment_providers.self_serve_apple_pay.apple_pay:StandAloneSelfServeApplePay.get_apple_pay_pem_file;root.payment_providers.self_serve.apple_pay:SelfServeApplePay.get_apple_pay_pem_file;root.payment_providers.checkoutdotcom.apple_pay:CheckoutDotComApplePay.get_apple_pay_pem_file;root.payment_providers.network_international.apple_pay:NetworkInternationalApplePay.get_apple_pay_pem_file;root.client.routers.payments.router:PaymentRouter._attach_self_serve_apple_pay_data;root.payment_providers.models.payment_provider:PayInMethod.provider_config;root.client.serializers:IntentSerializer.get_payment_status,IntentSerializer.get_payment_methods,IntentSerializer.get_checkout_setting_meta_data;root.client.utils:prepare_methods_data,get_payment_methods_from_checkout_settings,evaluate_triggers;root.accounts.models:Account.get_pay_in_methods_by_intent,Account.get_default_settings;root.payment_providers.utils:is_pay_in_method_an_applepay_method_with_incomplete_configuration;root.payments.models:PaymentIntent.requires_a_form,PaymentIntent.get_all_billing_data;root.routing.models.routing_rule:FlowVersion.get_all_billing_data_for_method' \\
+  --label apm
+: 1759253021:0;nano ./compose/scripts/up_x.sh
+: 1759253041:0;./compose/scripts/up_x.sh
+: 1759395476:0;git commit --no-verify -m "initial" 
+: 1759405141:0;git push -f
+: 1759405332:0;yarn dev --filter=dashboard-moneyhash
+: 1759405336:0;yarn
+: 1759405788:0;yarn dev 
+: 1759419118:0;zip dump_final_clean.sql data.sql
+: 1759419169:0;zip database_dump.zip dump_final_clean.sql 
+: 1759491422:0;celery -A config beat -S redbeat.RedBeatScheduler 
+: 1759507307:0;./manage.py opensearch index delete 
+
+: 1759655413:0;./manage.py opensearch index create --force
+
+: 1759670054:0;./manage.py makedatamigrations --name "mask_cvv"
+: 1759670082:0;./manage.py makedatamigration --name "mask_cvv"
+: 1759676037:0;./manage.py runserver 
+: 1759676728:0;kubectl port-forward rabbitmq-0   15672:15672
+: 1759676921:0;k get pods | grep opensearch
+: 1759676954:0;k logs
+: 1759678173:0;k delete pod 
+: 1759735213:0;source /home/waleed/work/one/backend/app/.venv/bin/activate
+: 1759737704:0;./manage.py migrate --database provider_activities
+: 1759737767:0;python manage.py load_db --db_alias provider_activities
+: 1759740170:0;git push -u origin ENG-
+: 1759748631:0;k9s
+: 1759761184:0;git checkout ENG-
+: 1759826980:0;systemctl --user restart pipewire wireplumber xdg-desktop-portal
+: 1759835547:0;./manage.py migrate 
+: 1759835697:0;./manage.py makemigrations --name "add_click2pay"
+: 1759856726:0;./utils/commands/maintenance_pod.sh --env production --keep --label rabbitmq
+: 1759857902:0;chezmoi apply .config/zsh/.zshrc
+: 1759910269:0;pip-compile
+: 1759910853:0;pip-sync
+: 1759918177:0;git stash
+: 1759933434:0;kexec
+: 1759933560:0;klogs
+
