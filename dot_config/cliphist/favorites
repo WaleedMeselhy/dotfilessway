@@ -1,1 +1,3 @@
 shell_plus ./manage.py shell_plus --quiet-load
+general_card 4242424242424242
+tap_card 5123450000000008

@@ -1,7 +1,6 @@
 : 1759073776:0;sudo mount -t cifs //tnas.local/public waleed-nas -o username=waleed,password=Sa123456,vers=3.0,uid=1000,gid=1000
 : 1759073792:0;sudo umount waleed-nas
 : 1759074225:0;git pull
-: 1759074228:0;git stash
 : 1759074453:0;tmux attach-session || tmux
 : 1759074820:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster-prod
 : 1759084581:0;reboot
@@ -34,9 +33,7 @@
 : 1759139336:0;./compose/scripts/compose.sh up redis postgres
 : 1759139381:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean.sql
 : 1759139454:0;./compose/scripts/compose.sh destroy-all
-: 1759160398:0;git checkout -b ENG-
 : 1759160514:0;./manage.py test -v 3 --parallel=20
-: 1759160793:0;./manage.py test -v 3 -k test_payfort_file_in_settlement_task
 : 1759214183:0;./manage.py opensearch index delete
 : 1759214210:0;./manage.py opensearch index create
 : 1759214277:0;./manage.py sync_transactions_to_opensearch
@@ -59,9 +56,7 @@
 : 1759419169:0;zip database_dump.zip dump_final_clean.sql 
 : 1759491422:0;celery -A config beat -S redbeat.RedBeatScheduler 
 : 1759507307:0;./manage.py opensearch index delete 
-
 : 1759655413:0;./manage.py opensearch index create --force
-
 : 1759670054:0;./manage.py makedatamigrations --name "mask_cvv"
 : 1759670082:0;./manage.py makedatamigration --name "mask_cvv"
 : 1759676037:0;./manage.py runserver 
@@ -69,20 +64,21 @@
 : 1759676921:0;k get pods | grep opensearch
 : 1759676954:0;k logs
 : 1759678173:0;k delete pod 
-: 1759735213:0;source /home/waleed/work/one/backend/app/.venv/bin/activate
 : 1759737704:0;./manage.py migrate --database provider_activities
 : 1759737767:0;python manage.py load_db --db_alias provider_activities
-: 1759740170:0;git push -u origin ENG-
 : 1759748631:0;k9s
-: 1759761184:0;git checkout ENG-
 : 1759826980:0;systemctl --user restart pipewire wireplumber xdg-desktop-portal
 : 1759835547:0;./manage.py migrate 
-: 1759835697:0;./manage.py makemigrations --name "add_click2pay"
-: 1759856726:0;./utils/commands/maintenance_pod.sh --env production --keep --label rabbitmq
 : 1759857902:0;chezmoi apply .config/zsh/.zshrc
 : 1759910269:0;pip-compile
 : 1759910853:0;pip-sync
 : 1759918177:0;git stash
 : 1759933434:0;kexec
 : 1759933560:0;klogs
-
+: 1760897310:0;kcontext
+: 1761035522:0;python manage.py migrate --db_alias provider_activities
+: 1761035533:0;python manage.py migrate --database provider_activities
+: 1761036965:0;celery -A config.celery worker -l info
+: 1761463517:0;./manage.py makemigrations --name "change_settlement"     
+: 1761478983:0;./utils/commands/maintenance_pod.sh --env production --keep --label rabbitmq
+: 1761492235:0;./manage.py test -k test_checkout_file_in_settlement_task

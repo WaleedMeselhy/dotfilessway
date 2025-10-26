@@ -28,7 +28,8 @@ kubectl aws-cli \
 zoom slack-desktop \
 docker docker-compose postman-bin ngrok postgresql redis \
 git-cola nemo dbeaver zip k9s htop \
-electron25-bin claude-desktop chatgpt-desktop-bin
+electron25-bin chatgpt-desktop-bin \
+solaar  psensor obsidian ncdu simplenote-electron-bin
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -73,6 +74,13 @@ systemctl --user restart pipewire wireplumber xdg-desktop-portal
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
 sudo usermod -aG docker ${USER}
+```
+
+## fix simplenote
+```sh
+cp /usr/share/applications/simplenote.desktop ~/.local/share/applications/simplenote.desktop
+sed -i 's|^Exec=.*|Exec=/opt/Simplenote/simplenote --ozone-platform=x11 %U|' ~/.local/share/applications/simplenote.desktop
+
 ```
 
 * configure font
