@@ -29,7 +29,8 @@ zoom slack-desktop \
 docker docker-compose postman-bin ngrok postgresql redis \
 git-cola nemo dbeaver zip k9s htop \
 electron25-bin chatgpt-desktop-bin \
-solaar  psensor obsidian ncdu simplenote-electron-bin
+solaar  psensor obsidian ncdu simplenote-electron-bin \
+gnome-disk-utility tor-browser-bin graphviz claude-code opera
 curl -fsSL https://pyenv.run | bash
 curl -fsSL "https://github.com/gpakosz/.tmux/raw/refs/heads/master/install.sh#$(date +%s)" | bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash

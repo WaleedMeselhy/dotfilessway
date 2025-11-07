@@ -80,5 +80,6 @@
 : 1761035533:0;python manage.py migrate --database provider_activities
 : 1761036965:0;celery -A config.celery worker -l info
 : 1761463517:0;./manage.py makemigrations --name "change_settlement"     
-: 1761478983:0;./utils/commands/maintenance_pod.sh --env production --keep --label rabbitmq
 : 1761492235:0;./manage.py test -k test_checkout_file_in_settlement_task
+: 1762076561:0;./manage.py makemigrations --name "allow_external_ingestion"
+: 1762264444:0;claude  --resume
