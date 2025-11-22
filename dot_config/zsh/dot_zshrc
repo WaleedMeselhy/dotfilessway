@@ -89,7 +89,8 @@ zshaddhistory() {
     
     # Define prefixes that should replace old entries (only keep the latest)
     local -a replace_prefixes=(
-        "./manage.py test -v 3 -k"
+        "./manage.py test --parallel=20"
+        "./manage.py test -k"
         "k exec"
         "git checkout ENG-"
         "git checkout -b ENG-"
@@ -113,14 +114,19 @@ zshaddhistory() {
                 escaped_prefix="${escaped_prefix//\[/\\[}"
                 grep -v "^: [0-9]*:[0-9];${escaped_prefix}" "$HISTFILE" > "$tmpfile" 2>/dev/null && mv "$tmpfile" "$HISTFILE"
             fi
+            # Reload history to reflect changes
+            fc -R
             return 0  # Add the new command
         fi
     done
     
     # Check for exact duplicates (for commands not in the replace list)
     if fc -ln 1 2>/dev/null | grep -Fxq "$line"; then
+        # Reload history to reflect changes
+        fc -R
         return 1  # Skip exact duplicate
     fi
-    
+    # Reload history to reflect changes
+    fc -R
     return 0  # Add to history
 }

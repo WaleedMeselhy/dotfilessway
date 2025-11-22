@@ -5,7 +5,7 @@ kexec() {
   kubectl exec "$(kubectl get pods | awk '{print $1}' | fzf)" -it -- bash
 }
 klogs() {
-  kubectl logs "$(kubectl get pods | awk '{print $1}' | fzf)"
+  kubectl logs -f "$(kubectl get pods | awk '{print $1}' | fzf)"
 }
 kcontext() {
   kubectl config use-context "$(kubectl config get-clusters | tail -n +2 | fzf)"
