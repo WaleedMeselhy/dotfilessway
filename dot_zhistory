@@ -61,7 +61,7 @@
 : 1763297587:0;git worktree add -b test-optimization ../test-optimization
 : 1763467027:0;./manage.py showmigrations > migrations.txt
 : 1763742145:0;./manage.py makemigrations payment_providers --empty --name "add_index_to_fwary_and_paymob"
-: 1763775049:0;git checkout ENG-8337_add-order-level-view-group-settlement-entries-by-merchant-reference
+: 1763775049:0;git checkout ENG-
 : 1763781343:0;./manage.py load_db --db_alias provider_activities
 : 1763781353:0;./manage.py load_db --update_local_copy
 : 1763781356:0;./manage.py load_db
@@ -69,3 +69,6 @@
 : 1763781364:0;./manage.py migrate --database provider_activities
 : 1763781989:0;./manage.py test -k TestSettlementTasks
 : 1763781993:0;./manage.py test --parallel=20 -k TestSettlementTasks
+: 1764074382:0;make create_hotfix_branch
+: 1764226890:0;./manage.py sync_transactions_to_opensearch --batch-size 10000 --until-date '2025-11-27T00:00:00'
+: 1764936419:0;k cp extract-2025-12-05T12_05_39.157Z.csv beat-prod-754d6b8dbf-ghdrf:/app

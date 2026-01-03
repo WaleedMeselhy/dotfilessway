@@ -4,8 +4,10 @@ FAVFILE="$HOME/.config/cliphist/favorites"
 
 # Combine favorites (plain) and cliphist (with IDs)
 selected=$(
-    { cat "$FAVFILE" 2>/dev/null | sed 's/^/⭐ /'; printf "\\n";
-      cliphist list; } | \
+    {   cliphist list | head -n 2;
+        cat "$FAVFILE" 2>/dev/null | sed 's/^/⭐ /'; printf "\\n";
+        cliphist list | tail -n +3;
+    } | \
     rofi -dmenu -font "$gui-font" -p "Select item to copy" -lines 10
 )
 
@@ -16,5 +18,3 @@ else
     # It's from cliphist, decode it
     echo "$selected" | cliphist decode | wl-copy
 fi
-
-

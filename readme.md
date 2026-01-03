@@ -20,6 +20,8 @@ intel-ucode    intel-compute-runtime \
 adobe-source-code-pro-fonts \
 ttf-sourcecodepro-nerd  \
 ttf-meslo-nerd          \
+p4merge-bin           \
+another-redis-desktop-manager-bin  \
 ttf-ms-fonts      \
 visual-studio-code-bin qownnotes \
 google-chrome nvim tmux meld geany\
