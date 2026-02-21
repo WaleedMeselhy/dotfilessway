@@ -28,6 +28,7 @@ google-chrome nvim tmux meld geany\
 autojump zoxide fzf eza yazi \
 kubectl aws-cli \
 zoom slack-desktop \
+visidata \
 docker docker-compose postman-bin ngrok postgresql redis \
 git-cola nemo dbeaver zip k9s htop \
 electron25-bin chatgpt-desktop-bin \

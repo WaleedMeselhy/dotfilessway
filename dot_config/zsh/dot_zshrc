@@ -100,6 +100,16 @@ zshaddhistory() {
         "k logs"
         "./manage.py makemigrations --name"
         "git cherry-pick"
+        "git rebase -i HEAD"
+        "git cherry-pick"
+        "gunicorn config.wsgi"
+        "sudo mount -t cifs"
+        "sudo umount waleed-nas"
+        "k get pods | grep celery | wc -l"
+        "k get pods | grep django | wc -l"
+        "k get pods --namespace preprod"
+        "./manage.py sync_transactions_to_opensearch"
+        "./manage.py opensearch index create"
     )
     
     # Check if line matches any prefix that should trigger replacement
@@ -109,25 +119,31 @@ zshaddhistory() {
             # Remove old entries with same prefix from history file
             if [[ -f "$HISTFILE" ]]; then
                 local tmpfile="${HISTFILE}.tmp.$$"
-                # Escape dots and other regex special chars for grep
                 local escaped_prefix="${prefix//./\\.}"
                 escaped_prefix="${escaped_prefix//\*/\\*}"
                 escaped_prefix="${escaped_prefix//\[/\\[}"
                 grep -v "^: [0-9]*:[0-9];${escaped_prefix}" "$HISTFILE" > "$tmpfile" 2>/dev/null && mv "$tmpfile" "$HISTFILE"
             fi
-            # Reload history to reflect changes
             fc -R
-            return 0  # Add the new command
+            return 0
         fi
     done
     
-    # Check for exact duplicates (for commands not in the replace list)
-    if fc -ln 1 2>/dev/null | grep -Fxq "$line"; then
-        # Reload history to reflect changes
-        fc -R
-        return 1  # Skip exact duplicate
+    # For exact duplicates: remove old entry, then allow the new one to be appended
+    if [[ -f "$HISTFILE" ]]; then
+        local tmpfile="${HISTFILE}.tmp.$$"
+        # Escape special regex chars in the line
+        local escaped_line="${line//./\\.}"
+        escaped_line="${escaped_line//\*/\\*}"
+        escaped_line="${escaped_line//\[/\\[}"
+        escaped_line="${escaped_line//\]/\\]}"
+        escaped_line="${escaped_line//\(/\\(}"
+        escaped_line="${escaped_line//\)/\\)}"
+        escaped_line="${escaped_line//\$/\\$}"
+        escaped_line="${escaped_line//\^/\\^}"
+        # Remove all previous occurrences of this exact command
+        grep -v "^: [0-9]*:[0-9];${escaped_line}$" "$HISTFILE" > "$tmpfile" 2>/dev/null && mv "$tmpfile" "$HISTFILE"
     fi
-    # Reload history to reflect changes
     fc -R
-    return 0  # Add to history
+    return 0  # Add the new command to the end
 }

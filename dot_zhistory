@@ -12,7 +12,7 @@
 : 1759129557:0;git reset --soft HEAD~1
 : 1759129572:0;git checkout staging
 : 1759130188:0;git reset --hard origin/staging
-: 1759130198:0;git stash pop
+: 1759130197:0;git stash 
 : 1759130455:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards
 : 1759130466:0;./compose/scripts/compose.sh destroy redis postgres opensearch opensearch-dashboards
 : 1759130558:0;./manage.py sync_static_data
@@ -54,7 +54,6 @@
 : 1760897310:0;kcontext
 : 1761036965:0;celery -A config.celery worker -l info
 : 1762264444:0;claude  --resume
-: 1762575026:0;git rebase -i HEAD~3
 : 1762931526:0;docker cp compose-postgres-1:/dump_final_clean.sql dump_final_clean_2.sql
 : 1762931564:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean_2.sql
 : 1763001499:0;./utils/commands/maintenance_pod.sh --env production --keep --label rabbitmq
@@ -67,8 +66,25 @@
 : 1763781356:0;./manage.py load_db
 : 1763781361:0;./manage.py migrate --db_alias provider_activities
 : 1763781364:0;./manage.py migrate --database provider_activities
-: 1763781989:0;./manage.py test -k TestSettlementTasks
+: 1763781365:0;../manage.py migrate 
+: 1763781989:0;./manage.py test -k test_export_transaction_success  2>&1 | tee output.txt
 : 1763781993:0;./manage.py test --parallel=20 -k TestSettlementTasks
 : 1764074382:0;make create_hotfix_branch
-: 1764226890:0;./manage.py sync_transactions_to_opensearch --batch-size 10000 --until-date '2025-11-27T00:00:00'
 : 1764936419:0;k cp extract-2025-12-05T12_05_39.157Z.csv beat-prod-754d6b8dbf-ghdrf:/app
+: 1767522015:0;./manage.py makemigrations
+: 1770117226:0;git checkout staging
+: 1770124401:0;./manage.py migratedata -f 0210_add_last_status_value
+: 1771160169:0;k get pods | grep django | wc -l
+: 1771160484:0;k get pods | grep celery | wc -l
+: 1771160485:0;k get pods --namespace preprod
+: 1771390878:0;./utils/commands/custom_env_pod.sh \\
+  --env production \\
+  --app django \\
+  --extra-env DD_PROFILING_ENABLED=true \\
+  --extra-env DD_TRACE_ENABLED=true \\
+  --extra-env DD_TRACE_METHODS='root.client.routers.payments.router:PaymentRouter._PaymentRouter__schedule_routing_log_persistence_after_commit;root.routing.models.actions.capture_action:CaptureRoutingAction.execute;root.routing.tasks:async_capture;root.routing.models.actions.refund_action:RefundRoutingAction.execute;root.routing.tasks:async_refund;root.routing.models.actions.void_action:VoidRoutingAction.execute;root.routing.tasks:async_void;root.payments.strategy.registrations:PullOperationStatusMixin.schedule_pull_operation_status;root.transactions.tasks:check_operation_provider_status_task;root.payments.utils:send_data_to_mixpanel;root.payments.tasks:send_payment_update_to_mixpanel;root.payments.tasks:send_payment_transaction_update_to_mixpanel;root.payments.models:PaymentIntent.save;root.core.utils.rabbitmq_utils:MessageBroker.publish,MessageBroker.flush_batched_messages;root.payments.models:PaymentTransaction.post_save;root.subscriptions.tasks:create_subscription_from_sci_task;root.transactions.tasks:continue_flow_task;root.payments.models:PaymentTransaction.post_payment_routine;root.payments.models:PaymentTransaction.hit_webhook;root.payments.models:PaymentTransaction.save;root.payments.signals:payment_intent_transition;root.payments.models:PaymentIntent.hit_webhook;root.transactions.models:OperationStatus.save;root.payments.tasks:save_statistics' \\
+  --label apm
+: 1771708606:0;gunicorn config.wsgi -c ./config/gunicorn_config.py --bind 0.0.0.0:8000 --pid /tmp/gunicorn.pid
+: 1771708843:0;git rebase -i HEAD~4
+: 1771709054:0;git stash pop
+: 1771709064:0;chezmoi add .zhistory
