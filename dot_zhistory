@@ -87,4 +87,15 @@
 : 1771708606:0;gunicorn config.wsgi -c ./config/gunicorn_config.py --bind 0.0.0.0:8000 --pid /tmp/gunicorn.pid
 : 1771708843:0;git rebase -i HEAD~4
 : 1771709054:0;git stash pop
-: 1771709064:0;chezmoi add .zhistory
+: 1774681442:0;pg_restore -h localhost -U money_hashuser -d money_hash \\
+  --clean \\
+  --if-exists \\
+  --no-owner \\
+  --no-privileges \\
+  --verbose \\
+  dump_compressed.dump
+: 1774681450:0;kubectl exec postgres-core-postgresql-0 -- \\
+  env PGPASSWORD="5j02vItQGV" \\
+  pg_dump -U postgres -d money_hash -Fc -Z 9 \\
+  > dump_compressed.dump
+: 1774681469:0;chezmoi add .zhistory
