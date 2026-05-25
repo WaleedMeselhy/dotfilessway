@@ -147,3 +147,5 @@ zshaddhistory() {
     fc -R
     return 0  # Add the new command to the end
 }
+# opencode
+export PATH=/home/waleed/.opencode/bin:$PATH
