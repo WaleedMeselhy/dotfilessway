@@ -14,6 +14,8 @@ application/x-extension-xhtml=google-chrome.desktop
 application/x-extension-xht=google-chrome.desktop
 video/vnd.avi=vlc.desktop
 video/x-ms-wmv=vlc.desktop
+video/x-matroska=vlc.desktop
+application/json=geany.desktop
 
 [Added Associations]
 text/plain=geany.desktop;micro.desktop;
@@ -30,3 +32,5 @@ application/x-extension-xhtml=google-chrome.desktop;
 application/x-extension-xht=google-chrome.desktop;
 video/vnd.avi=vlc.desktop;
 video/x-ms-wmv=vlc.desktop;
+video/x-matroska=vlc.desktop;
+application/json=geany.desktop;
