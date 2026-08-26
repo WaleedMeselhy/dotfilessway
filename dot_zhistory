@@ -1,149 +1,171 @@
-: 1700000000:0;./compose/scripts/compose.sh destroy redis postgres opensearch opensearch-dashboards
-: 1700000001:0;./compose/scripts/compose.sh destroy-all
-: 1700000002:0;./compose/scripts/compose.sh down redis postgres opensearch opensearch-dashboards
-: 1700000003:0;./compose/scripts/compose.sh up redis postgres
-: 1700000004:0;./compose/scripts/compose.sh up redis postgres
-: 1700000005:0;./compose/scripts/compose.sh up redis postgres minio
-: 1700000006:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards
-: 1700000007:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards rabbitmq
-: 1700000008:0;./compose/scripts/compose.sh up redis postgres rabbitmq
-: 1700000009:0;./compose/scripts/up_x.sh postgres_tokens postgres_tokens_sa
-: 1700000010:0;./manage.py dbshell
-: 1700000011:0;./manage.py load_db
-: 1700000012:0;./manage.py load_db --db_alias provider_activities
-: 1700000013:0;./manage.py load_db --update_local_copy
-: 1700000014:0;./manage.py load_db --update_local_copy --testdb
-: 1700000015:0;./manage.py makedatamigration --name "fix_rrn_peach_payment"
-: 1700000016:0;./manage.py makedatamigration --name "mask_cvv"
-: 1700000017:0;./manage.py makedatamigrations --name "mask_cvv"
-: 1700000018:0;./manage.py makemigrations
-: 1700000019:0;./manage.py makemigrations --name "add_unqiue_constrain"
-: 1700000020:0;./manage.py makemigrations payment_providers --empty --name "add_index_to_fwary_and_paymob"
-: 1700000021:0;./manage.py makemigrations webhooks --empty --name "add_index_to_webhook_archive_index"
-: 1700000022:0;./manage.py migrate
-: 1700000023:0;./manage.py migrate --database provider_activities
-: 1700000024:0;./manage.py migrate --db_alias provider_activities
-: 1700000025:0;./manage.py migrate_webhooks_to_s3 --from-date  "2022-10-01"   --to-date "2026-10-01"
-: 1700000026:0;./manage.py migratedata -f 0210_add_last_status_value
-: 1700000027:0;./manage.py opensearch index create
-: 1700000028:0;./manage.py opensearch index delete
-: 1700000029:0;./manage.py runserver
-: 1700000030:0;./manage.py runserver
-: 1700000031:0;./manage.py runserver 8001
-: 1700000032:0;./manage.py shell_plus --quiet-load
-: 1700000033:0;./manage.py show_urls
-: 1700000034:0;./manage.py showmigrations > migrations.txt
-: 1700000035:0;./manage.py sync_static_data
-: 1700000036:0;./manage.py sync_transactions_to_opensearch
-: 1700000037:0;./manage.py test --parallel=20
-: 1700000038:0;./manage.py test -k test_opensearch_filters_and_sorting_applied_at_query_level
-: 1700000039:0;./start-celery.sh
-: 1700000040:0;./start-celery.sh --queues critical
-: 1700000041:0;./start-celery.sh --queues low
-: 1700000042:0;./start-celery.sh --queues=critical
-: 1700000043:0;./start-celery.sh --queues=low
-: 1700000044:0;./utils/commands/custom_env_pod.sh \\
+: 1787717357:0;./compose/scripts/compose.sh destroy redis postgres opensearch opensearch-dashboards
+: 1787717358:0;./compose/scripts/compose.sh destroy-all
+: 1787717359:0;./compose/scripts/compose.sh down redis postgres opensearch opensearch-dashboards
+: 1787717360:0;./compose/scripts/compose.sh up redis postgres
+: 1787717361:0;./compose/scripts/compose.sh up redis postgres
+: 1787717362:0;./compose/scripts/compose.sh up redis postgres minio
+: 1787717363:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards
+: 1787717364:0;./compose/scripts/compose.sh up redis postgres opensearch opensearch-dashboards rabbitmq
+: 1787717365:0;./compose/scripts/compose.sh up redis postgres rabbitmq
+: 1787717366:0;./compose/scripts/up_x.sh postgres_tokens postgres_tokens_sa
+: 1787717367:0;./manage.py dbshell
+: 1787717368:0;./manage.py load_db
+: 1787717369:0;./manage.py load_db --db_alias provider_activities
+: 1787717370:0;./manage.py load_db --update_local_copy
+: 1787717371:0;./manage.py load_db --update_local_copy --testdb
+: 1787717372:0;./manage.py makedatamigration --name "fix_rrn_peach_payment"
+: 1787717373:0;./manage.py makedatamigration --name "mask_cvv"
+: 1787717374:0;./manage.py makedatamigrations --name "mask_cvv"
+: 1787717375:0;./manage.py makemigrations
+: 1787717376:0;./manage.py makemigrations --name "add_unqiue_constrain"
+: 1787717377:0;./manage.py makemigrations payment_providers --empty --name "add_index_to_fwary_and_paymob"
+: 1787717378:0;./manage.py makemigrations webhooks --empty --name "add_index_to_webhook_archive_index"
+: 1787717379:0;./manage.py migrare exchange
+: 1787717380:0;./manage.py migrate
+: 1787717381:0;./manage.py migrate
+: 1787717382:0;./manage.py migrate --database provider_activities
+: 1787717383:0;./manage.py migrate --database sa
+: 1787717384:0;./manage.py migrate --db_alias provider_activities
+: 1787717385:0;./manage.py migrate_webhooks_to_s3 --from-date  "2022-10-01"   --to-date "2026-10-01"
+: 1787717386:0;./manage.py migratedata -f 0210_add_last_status_value
+: 1787717387:0;./manage.py opensearch index create
+: 1787717388:0;./manage.py opensearch index delete
+: 1787717389:0;./manage.py runserver
+: 1787717390:0;./manage.py opensearch_read_alias --alias customer_active --retire customer
+: 1787717391:0;./manage.py opensearch_read_alias --alias customer_active --switch-to customer_v
+: 1787717392:0;./manage.py runserver
+: 1787717393:0;./manage.py runserver 8001
+: 1787717394:0;./manage.py shell_plus --quiet-load
+: 1787717395:0;./manage.py show_urls
+: 1787717396:0;./manage.py showmigrations > migrations.txt
+: 1787717397:0;./manage.py sqlmigrate billing 0016
+: 1787717398:0;./manage.py sync_static_data
+: 1787717399:0;./manage.py sync_to_opensearch --document customer
+: 1787717400:0;./manage.py sync_to_opensearch --document customer --backfill-strategy index
+: 1787717401:0;./manage.py test --parallel=20  2>&1 | tee output.txt
+: 1787717402:0;./manage.py test -k test_opensearch_filters_and_sorting_applied_at_query_level
+: 1787717403:0;./start-celery.sh
+: 1787717404:0;./start-celery.sh --queues critical
+: 1787717405:0;./start-celery.sh --queues low
+: 1787717406:0;./start-celery.sh --queues=critical
+: 1787717407:0;./start-celery.sh --queues=low
+: 1787717408:0;./utils/commands/custom_env_pod.sh \\
   --env production \\
   --app django \\
   --extra-env DD_PROFILING_ENABLED=true \\
   --extra-env DD_TRACE_ENABLED=true \\
   --extra-env DD_TRACE_METHODS='root.client.routers.payments.router:PaymentRouter._PaymentRouter__schedule_routing_log_persistence_after_commit;root.routing.models.actions.capture_action:CaptureRoutingAction.execute;root.routing.tasks:async_capture;root.routing.models.actions.refund_action:RefundRoutingAction.execute;root.routing.tasks:async_refund;root.routing.models.actions.void_action:VoidRoutingAction.execute;root.routing.tasks:async_void;root.payments.strategy.registrations:PullOperationStatusMixin.schedule_pull_operation_status;root.transactions.tasks:check_operation_provider_status_task;root.payments.utils:send_data_to_mixpanel;root.payments.tasks:send_payment_update_to_mixpanel;root.payments.tasks:send_payment_transaction_update_to_mixpanel;root.payments.models:PaymentIntent.save;root.core.utils.rabbitmq_utils:MessageBroker.publish,MessageBroker.flush_batched_messages;root.payments.models:PaymentTransaction.post_save;root.subscriptions.tasks:create_subscription_from_sci_task;root.transactions.tasks:continue_flow_task;root.payments.models:PaymentTransaction.post_payment_routine;root.payments.models:PaymentTransaction.hit_webhook;root.payments.models:PaymentTransaction.save;root.payments.signals:payment_intent_transition;root.payments.models:PaymentIntent.hit_webhook;root.transactions.models:OperationStatus.save;root.payments.tasks:save_statistics' \\
   --label apm
-: 1700000045:0;./utils/commands/maintenance_pod.sh --env production --keep --label sync
-: 1700000046:0;/home/waleed/work/one_vault/vault_be/app/.venv/bin/python
-: 1700000047:0;cd "/home/waleed/work/one/checkout_preact/app" && yarn dev
-: 1700000048:0;cd "/home/waleed/work/one_vault/vault_form/app" && yarn dev
-: 1700000049:0;celery -A config beat -S redbeat.RedBeatScheduler
-: 1700000050:0;celery -A config.celery worker -l info
-: 1700000051:0;claude --resume
-: 1700000052:0;docker cp compose-postgres-1:/dump_final_clean.sql dump_final_clean_2.sql
-: 1700000053:0;git checkout -b ENG-8416_add_unique_constrain
-: 1700000054:0;git checkout -b FIX_check_subscription_intent
-: 1700000055:0;git checkout -b FIX_deadlock_with_subscription
-: 1700000056:0;git checkout -b FIX_paymob_recurring
-: 1700000057:0;git checkout -b FIX_test_for_export_reports
-: 1700000058:0;git checkout ENG-9074_Fix_Bulk_Payout_Request_5
-: 1700000059:0;git checkout FIX_
-: 1700000060:0;git checkout FIX_deadlock_with_subscription
-: 1700000061:0;git checkout hotfix-prod-v.58245
-: 1700000062:0;git checkout hotfix-prod-v.58246
-: 1700000063:0;git checkout production.v58246
-: 1700000064:0;git checkout refactor_webhook
-: 1700000065:0;git checkout staging
-: 1700000066:0;git checkout temp
-: 1700000067:0;git checkout temp-2
-: 1700000068:0;git checkout test-optimization
-: 1700000069:0;git cherry-pick -x 51a030718ee0abb82a6bbe2db0cc05dcf14beaf9
-: 1700000070:0;git commit --no-verify -m "initial"
-: 1700000071:0;git commit -m "update"
-: 1700000072:0;git merge --squash FIX_remove_operation_polymorphic
-: 1700000073:0;git pull
-: 1700000074:0;git push
-: 1700000075:0;git push -f
-: 1700000076:0;git rebase -i HEAD~2
-: 1700000077:0;git reset --hard origin/hotfix-prod-v.58246
-: 1700000078:0;git reset --hard origin/staging
-: 1700000079:0;git reset --hard origin/test-optimization
-: 1700000080:0;git reset --soft HEAD~1
-: 1700000081:0;git stash
-: 1700000082:0;git stash drop
-: 1700000083:0;git stash pop
-: 1700000084:0;git worktree add -b test-optimization ../test-optimization
-: 1700000085:0;git worktree list
-: 1700000086:0;j on__1__/home/waleed/work/one
-: 1700000087:0;j one__1__/home/waleed/work/one
-: 1700000088:0;j va__1__/home/waleed/work/one_vault
-: 1700000089:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster
-: 1700000090:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster-prod
-: 1700000091:0;k cp April-8.csv maintenance-pod-waleed-meselhy-production-1775464734-sync:/app/
-: 1700000092:0;k delete pod maintenance-pod-waleed-meselhy-production-1775148074-sync
-: 1700000093:0;k get pods
-: 1700000094:0;k get pods --namespace preprod
-: 1700000095:0;k get pods | grep celery | wc -l
-: 1700000096:0;k get pods | grep django | wc -l
-: 1700000097:0;kcontext
-: 1700000098:0;kexec
-: 1700000099:0;klogs
-: 1700000100:0;kport-forward
-: 1700000101:0;kubectl port-forward rabbitmq-0 15672:15672
-: 1700000102:0;make create_hotfix_branch
-: 1700000103:0;make install_git_hooks
-: 1700000104:0;make switch_to_latest_prod_tag
-: 1700000105:0;nano ./compose/scripts/up_x.sh
-: 1700000106:0;ngrok 8000
-: 1700000107:0;ngrok http 8000
-: 1700000108:0;pacman -Qtdq | sudo pacman -Rns -
-: 1700000109:0;pg_restore -h localhost -U money_hashuser -d money_hash \\
+: 1787717409:0;./utils/commands/maintenance_pod.sh --env production --keep --label sync
+: 1787717410:0;/home/waleed/work/one_vault/vault_be/app/.venv/bin/python
+: 1787717411:0;SYNC_NEW_INDEX_ONLY=true ./manage.py sync_transactions_to_opensearch
+: 1787717412:0;cd "/home/waleed/work/one/checkout_preact/app" && yarn dev
+: 1787717413:0;cd "/home/waleed/work/one_vault/vault_form/app" && yarn dev
+: 1787717414:0;celery -A config beat -S redbeat.RedBeatScheduler
+: 1787717415:0;celery -A config.celery worker -l info
+: 1787717416:0;claude --resume
+: 1787717417:0;docker cp compose-postgres-1:/dump_final_clean.sql dump_final_clean_2.sql
+: 1787717418:0;git checkout -b ENG-8416_add_unique_constrain
+: 1787717419:0;gcloud auth login && gcloud auth application-default login
+: 1787717420:0;git checkout -b FIX_check_subscription_intent
+: 1787717421:0;git checkout -b FIX_deadlock_with_subscription
+: 1787717422:0;git checkout -b FIX_paymob_recurring
+: 1787717423:0;git checkout -b FIX_test_for_export_reports
+: 1787717424:0;git checkout ENG-9074_Fix_Bulk_Payout_Request_5
+: 1787717425:0;git checkout FIX_
+: 1787717426:0;git checkout FIX_deadlock_with_subscription
+: 1787717427:0;git checkout hotfix-prod-v.58245
+: 1787717428:0;git checkout hotfix-prod-v.58246
+: 1787717429:0;git checkout production.v58246
+: 1787717430:0;git checkout refactor_webhook
+: 1787717431:0;git checkout staging
+: 1787717432:0;git checkout temp
+: 1787717433:0;git checkout temp-2
+: 1787717434:0;git checkout test-optimization
+: 1787717435:0;git cherry-pick -x 51a030718ee0abb82a6bbe2db0cc05dcf14beaf9
+: 1787717436:0;git commit --no-verify -m "initial"
+: 1787717437:0;git commit -m "update"
+: 1787717438:0;git merge --squash FIX_remove_operation_polymorphic
+: 1787717439:0;git pull
+: 1787717440:0;git push
+: 1787717441:0;git push -f
+: 1787717442:0;git rebase -i HEAD~2
+: 1787717443:0;git reset --hard origin/hotfix-prod-v.58246
+: 1787717444:0;git reset --hard origin/staging
+: 1787717445:0;git reset --hard origin/test-optimization
+: 1787717446:0;git reset --soft HEAD~1
+: 1787717447:0;git stash
+: 1787717448:0;git stash drop
+: 1787717449:0;git stash pop
+: 1787717450:0;git worktree add -b test-optimization ../test-optimization
+: 1787717451:0;git worktree list
+: 1787717452:0;herdr
+: 1787717453:0;j on__1__/home/waleed/work/one
+: 1787717454:0;j one__1__/home/waleed/work/one
+: 1787717455:0;j va__1__/home/waleed/work/one_vault
+: 1787717456:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster
+: 1787717457:0;k config use-context arn:aws:eks:eu-central-1:287123234952:cluster/MoneyHash-eks-cluster-prod
+: 1787717458:0;k cp April-8.csv maintenance-pod-waleed-meselhy-production-1775464734-sync:/app/
+: 1787717459:0;k delete pod maintenance-pod-waleed-meselhy-production-1775148074-sync
+: 1787717460:0;k get pods
+: 1787717461:0;k get pods --namespace preprod
+: 1787717462:0;k get pods | grep celery | wc -l
+: 1787717463:0;k get pods | grep django | wc -l
+: 1787717464:0;k9s
+: 1787717465:0;kcontext
+: 1787717466:0;kexec
+: 1787717467:0;killall chrome
+: 1787717468:0;killall nemo
+: 1787717469:0;killall slack
+: 1787717470:0;klogs
+: 1787717471:0;kport-forward
+: 1787717472:0;kubectl port-forward rabbitmq-0 15672:15672
+: 1787717473:0;make create_hotfix_branch
+: 1787717474:0;make install_git_hooks
+: 1787717475:0;make switch_to_latest_prod_tag
+: 1787717476:0;nano ./compose/scripts/up_x.sh
+: 1787717477:0;ncdu
+: 1787717478:0;ngrok 8000
+: 1787717479:0;ngrok http 8000
+: 1787717480:0;pacman -Qtdq | sudo pacman -Rns -
+: 1787717481:0;pg_restore -h localhost -U money_hashuser -d money_hash \\
   --clean \\
   --if-exists \\
   --no-owner \\
   --no-privileges \\
   --verbose \\
   dump_compressed_latest.dump
-: 1700000110:0;pip-compile
-: 1700000111:0;pip-sync
-: 1700000112:0;ps aux| grep own
-: 1700000113:0;ps aux| grep python
-: 1700000114:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean.sql
-: 1700000115:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean_2.sql
-: 1700000116:0;python manage.py load_db
-: 1700000117:0;python manage.py load_db --update_local_copy
-: 1700000118:0;python manage.py load_db --update_local_copy --db_alias provider_activities
-: 1700000119:0;python manage.py load_db --update_local_copy --db_alias provider_activities --testdb
-: 1700000120:0;r source /home/waleed/work/one/backend/app/.venv/bin/activate
-: 1700000121:0;reboot
-: 1700000122:0;source .venv/bin/activate
-: 1700000123:0;source /home/waleed/work/one/backend/app/.venv/bin/activate
-: 1700000124:0;sudo mount -t cifs //tnas.local/public waleed-nas -o username=waleed,password=Sa123456,vers=3.0,uid=1000,gid=1000
-: 1700000125:0;sudo umount waleed-nas
-: 1700000126:0;systemctl --user restart pipewire wireplumber xdg-desktop-portal
-: 1700000127:0;tmux
-: 1700000128:0;tmux attach-session || tmux
-: 1700000129:0;tmux kill-server
-: 1700000130:0;uv lock
-: 1700000131:0;uv sync
-: 1700000132:0;yarn
-: 1700000133:0;yarn dev
-: 1700000134:0;yarn dev --filter=dashboard-moneyhash
-: 1700000135:0;yay -Syyu
-: 1700000136:0;yazi
+: 1787717482:0;pip-compile
+: 1787717483:0;pip-sync
+: 1787717484:0;ps aux| grep own
+: 1787717485:0;ps aux| grep python
+: 1787717486:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean.sql
+: 1787717487:0;psql -h localhost -U money_hashuser -d money_hash -f dump_final_clean_2.sql
+: 1787717488:0;python manage.py load_db --db_alias provider_activities
+: 1787717489:0;python manage.py load_db --update_local_copy
+: 1787717490:0;python manage.py load_db --update_local_copy --db_alias provider_activities
+: 1787717491:0;python manage.py load_db --update_local_copy --db_alias provider_activities --testdb
+: 1787717492:0;r source /home/waleed/work/one/backend/app/.venv/bin/activate
+: 1787717493:0;reboot
+: 1787717494:0;source .venv/bin/activate
+: 1787717495:0;source /home/waleed/work/one/backend/app/.venv/bin/activate
+: 1787717496:0;ssh ubuntu@ec2-63-180-177-59.eu-central-1.compute.amazonaws.com -i ~/.ssh/mh-ghazy.pem
+: 1787717497:0;ssh waleed@tnas.local -p 9222
+: 1787717498:0;stern
+: 1787717499:0;sudo mount -t cifs //tnas.local/public waleed-nas -o username=waleed,password=Sa123456,vers=3.0,uid=1000,gid=1000
+: 1787717500:0;sudo tailscale down
+: 1787717501:0;sudo tailscale up \\
+  --login-server=https://headscale.vpn-preprod.moneyhash.net \\
+  --accept-routes
+: 1787717502:0;sudo umount waleed-nas
+: 1787717503:0;systemctl --user restart pipewire wireplumber xdg-desktop-portal
+: 1787717504:0;tmux
+: 1787717505:0;tmux attach-session || tmux
+: 1787717506:0;tmux kill-server
+: 1787717507:0;uv lock
+: 1787717508:0;uv sync
+: 1787717509:0;yarn
+: 1787717510:0;yarn dev
+: 1787717511:0;yarn dev --filter=dashboard-moneyhash
+: 1787717512:0;yay -Syyu
+: 1787717513:0;yazi

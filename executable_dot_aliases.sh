@@ -2,10 +2,12 @@
 alias fixZshHistory="cat -n ~/.zhistory | sort -t ';' -uk2 | sort -nk1 | cut -f2- > ~/.zhistory"
 
 kexec() {
-    kubectl exec "$(kubectl get pods | awk '{print $1}' | fzf)" -it -- bash
+    namespace="${1:-default}"
+    kubectl exec  "$(kubectl get pods -n "$namespace" | awk '{print $1}' | fzf)" -n "$namespace" -it -- bash
 }
 klogs() {
-    kubectl logs -f "$(kubectl get pods | awk '{print $1}' | fzf)"
+    namespace="${1:-default}"
+    kubectl logs -f "$(kubectl get pods -n "$namespace" | awk '{print $1}' | fzf)" -n "$namespace"
 }
 kcontext() {
     kubectl config use-context "$(kubectl config get-clusters | tail -n +2 | fzf)"

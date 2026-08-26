@@ -16,6 +16,11 @@ video/vnd.avi=vlc.desktop
 video/x-ms-wmv=vlc.desktop
 video/x-matroska=vlc.desktop
 application/json=geany.desktop
+x-scheme-handler/slack=slack.desktop
+x-scheme-handler/notion=notion.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/codex=ChatGPT.desktop
+application/x-zerosize=geany.desktop
 
 [Added Associations]
 text/plain=geany.desktop;micro.desktop;
@@ -34,3 +39,4 @@ video/vnd.avi=vlc.desktop;
 video/x-ms-wmv=vlc.desktop;
 video/x-matroska=vlc.desktop;
 application/json=geany.desktop;
+application/x-zerosize=geany.desktop;
